@@ -8,9 +8,7 @@ import {
   SiLinux,
   SiReplit,
   SiNumpy,
-  SiOpencv,
   SiJupyter,
-  SiGooglecloud,
   SiC,
   SiPostgresql,
 } from "react-icons/si";
@@ -29,13 +27,12 @@ const skillCategories = [
       { icon: SiPython, color: "#3776AB", name: "Python" },
       { icon: SiC, color: "#A8B9CC", name: "C" },
       { icon: SiNumpy, color: "#013243", name: "NumPy" },
-      { icon: SiOpencv, color: "#5C3EE8", name: "OpenCV" },
       { icon: SiPostgresql, color: "#4169E1", name: "PostgreSQL" },
     ],
     bullets: [
       "Building responsive websites with HTML, CSS & JavaScript",
       "Writing automation scripts and data programs with Python & C",
-      "Numerical computing and image processing with NumPy & OpenCV",
+      "Numerical computing  with NumPy",
       "Database management and querying with PostgreSQL",
     ],
     animDir: "left" as const,
@@ -48,8 +45,7 @@ const skillCategories = [
       { icon: SiGithub, color: "#181717", name: "GitHub" },
       { icon: SiReplit, color: "#F26207", name: "Replit" },
       { icon: VscCode, color: "#007ACC", name: "VS Code" },
-      { icon: SiJupyter, color: "#F37626", name: "Jupyter" },
-      { icon: SiGooglecloud, color: "#4285F4", name: "Google Cloud" },
+      { icon: SiJupyter, color: "#F37626", name: "Jupyter" }
     ],
     bullets: [
       "Version control with Git and GitHub for collaboration",
