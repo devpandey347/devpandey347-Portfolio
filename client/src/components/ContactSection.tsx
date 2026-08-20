@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Github, Linkedin, Send, Copy, CheckCheck, Link } from "lucide-react";
 import { SiX, SiInstagram, SiGeeksforgeeks, SiReddit } from "react-icons/si";
 
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const socialLinks = [
   {
     name: "LinkedIn",
@@ -52,6 +54,9 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const headingAnim = useScrollAnimation<HTMLDivElement>({ direction: "up", threshold: 0.15 });
+  const contentAnim = useScrollAnimation<HTMLDivElement>({ direction: "up", threshold: 0.1 });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,28 +140,29 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 px-6"
+      className="py-16 md:py-24 px-4 sm:px-8"
+      style={{ backgroundColor: "#dde6f5" }}
       data-testid="section-contact"
     >
       <div className="content-wrap">
-        <div className="text-center mb-16">
+        <div ref={headingAnim.ref} style={headingAnim.style} className="text-center mb-10">
           <p className="font-mono text-primary text-sm mb-2">Let's connect</p>
           <h2 className="text-3xl md:text-4xl font-bold" data-testid="text-contact-title">
             Get In Touch
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <Card className="border-border/50" data-testid="card-contact-form">
-            <CardHeader>
-              <CardTitle>Send a Message</CardTitle>
+        <div ref={contentAnim.ref} style={contentAnim.style} className="grid lg:grid-cols-2 gap-8 items-start">
+          <Card className="border-border/50 bg-white shadow-sm" data-testid="card-contact-form">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl md:text-2xl">Send a Message</CardTitle>
               <CardDescription>
                 Have a question or want to collaborate? Drop me a message!
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-1.5">
                   <Label htmlFor="name">Name</Label>
                   <Input
                     id="name"
@@ -169,7 +175,7 @@ export default function ContactSection() {
                     data-testid="input-name"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
@@ -183,12 +189,12 @@ export default function ContactSection() {
                     data-testid="input-email"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
                     placeholder="What would you like to say?"
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -199,7 +205,7 @@ export default function ContactSection() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full mt-2"
                   disabled={isSubmitting}
                   data-testid="button-send-message"
                 >
@@ -216,21 +222,22 @@ export default function ContactSection() {
             </CardContent>
           </Card>
 
-          <div className="space-y-8">
-            <Card className="border-border/50" data-testid="card-email">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-md bg-primary/10 text-primary">
-                    <Mail className="h-6 w-6" />
+          <div className="space-y-6">
+            <Card className="border-border/50 bg-white shadow-sm" data-testid="card-email">
+              <CardContent className="p-5 sm:p-6">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground mb-1">Email</p>
-                    <p className="font-mono">{contactEmail}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-0.5">Email</p>
+                    <p className="font-mono text-sm sm:text-base truncate">{contactEmail}</p>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={copyEmail}
+                    className="flex-shrink-0"
                     data-testid="button-copy-email"
                   >
                     {copied ? (
@@ -243,25 +250,26 @@ export default function ContactSection() {
               </CardContent>
             </Card>
 
-            <Card className="border-border/50" data-testid="card-social">
-              <CardHeader>
+            <Card className="border-border/50 bg-white shadow-sm" data-testid="card-social">
+              <CardHeader className="pb-4">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Link className="h-5 w-5 text-primary" />
                   Connect with me
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3">
                   {socialLinks.map((link, index) => (
                     <a
                       key={index}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="block w-full min-w-0"
                       data-testid={`link-social-${link.name.toLowerCase()}`}
                     >
-                      <Button variant="outline" className="w-full gap-2 justify-start">
-                        <link.icon className="h-4 w-4" />
+                      <Button variant="outline" className="w-full gap-2 justify-start px-3 py-2 text-xs sm:text-sm overflow-hidden">
+                        <link.icon className="h-4 w-4 flex-shrink-0" />
                         <span className="truncate">{link.name}</span>
                       </Button>
                     </a>
@@ -270,11 +278,11 @@ export default function ContactSection() {
               </CardContent>
             </Card>
 
-            <Card className="border-border/50 bg-primary/5" data-testid="card-availability">
-              <CardContent className="p-6">
+            <Card className="border-border/50 bg-primary/5 shadow-sm" data-testid="card-availability">
+              <CardContent className="p-5 sm:p-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                  <p className="text-sm">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
+                  <p className="text-xs sm:text-sm text-foreground/90 font-medium">
                     Currently open to new opportunities and collaborations
                   </p>
                 </div>

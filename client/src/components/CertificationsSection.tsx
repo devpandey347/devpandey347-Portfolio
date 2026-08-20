@@ -11,12 +11,10 @@ type Certification = {
 
 const certifications: Certification[] = [
     {
-        title: "Building the Web",
-        issuer: "LinkedIn Learning",
+        title: "Fundamentals of AI and ML",
+        issuer: "AWS",
         date: "2026",
-        image: "certifications/WebDevCertificate.png",
-        credentialUrl:
-            "https://www.linkedin.com/learning/certificates/a0a87af6299c39b7a85b9d0b36c4d30d981c89ad26769c831240ef9676cebcbd",
+        image: "certifications/Fundamentals of ML & AI by AWS.png",
     },
     {
         title: "Career Essentials in GitHub",
