@@ -1,68 +1,133 @@
-import { Github, ExternalLink, MessageSquare, BookOpen, Users } from "lucide-react";
+import { Github, ExternalLink, BookOpen, HeartPulse, BarChart3, Palette, Users } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  icon: typeof BookOpen;
+  github: string;
+  liveUrl?: string;
+  badge?: string;
+  animDir: "left" | "right";
+};
+
+const projects: Project[] = [
   {
-    title: "Material Repository",
+    title: "Campus Connect",
     description:
-      "A study material sharing website for students to access notes and resources. Built using my prompting skills with GitHub Copilot and Antigravity. Currently serving 200+ regular users who rely on it for their academic needs.",
-    tech: ["HTML", "CSS", "JavaScript", "GitHub Copilot", "Antigravity"],
+      "A group project full-stack academic resource platform for university students, built with a teammate. Features Next.js 16, React 19, TypeScript, and Tailwind CSS with Google OAuth (NextAuth) and Firebase for authentication. Provides subject PPTs, E-Textbooks, and course resources.",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "NextAuth", "Firebase"],
     icon: BookOpen,
     github: "https://github.com/devpandey347",
-    badge: "200+ Users",
-    animDir: "left" as const,
+    liveUrl: "https://campus-connect-lpu.vercel.app/",
+    badge: "Group Project",
+    animDir: "left",
   },
   {
-    title: "NLTK Chatbot",
+    title: "Last Minute Life Saver",
     description:
-      "A conversational chatbot created using Python and NLTK. Uses tokenization and pattern matching to respond to user queries intelligently.",
-    tech: ["Python", "NLTK"],
-    icon: MessageSquare,
+      "MERN-stack emergency assistance platform for quick access to critical resources. Features a responsive, one-click interface prioritizing speed during critical situations with planned Geolocation and Google Maps API integration.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Geolocation API"],
+    icon: HeartPulse,
     github: "https://github.com/devpandey347",
-    animDir: "right" as const,
+    liveUrl: "https://devpandey347.github.io/Vibe2Ship-The-Last-Minute-Life-Saver/",
+    badge: "Vibe2Ship Project",
+    animDir: "right",
+  },
+  {
+    title: "Exploratory Data Analysis Projects",
+    description:
+      "Applied Pandas and Matplotlib/Seaborn to derive insights from sample datasets in coursework. Cleaned and transformed raw datasets into Pandas DataFrames, constructed visualizations (bar charts, histograms, heatmaps), and identified key trends and outliers.",
+    tech: ["Python", "Pandas", "Matplotlib", "Seaborn", "EDA"],
+    icon: BarChart3,
+    github: "https://github.com/devpandey347",
+    animDir: "left",
+  },
+  {
+    title: "Red Dead Redemption II — UI/UX Experience",
+    description:
+      "Cinematic, scroll-first landing page built when exploring website designing as an open-source UI/UX design reference. Designed a cinematic hero section with split-screen character-spotlight layouts and dark editorial typography.",
+    tech: ["HTML5", "CSS3", "JavaScript", "UI/UX Design"],
+    icon: Palette,
+    github: "https://github.com/devpandey347",
+    liveUrl: "https://devpandey347.github.io/Red-Dead-Redemption-2-UI-UX/",
+    animDir: "right",
   },
 ];
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const anim = useScrollAnimation<HTMLDivElement>({ direction: project.animDir, threshold: 0.12 });
 
   return (
     <div
       ref={anim.ref}
       style={anim.style}
-      className="bg-white rounded-2xl p-8 shadow-sm skill-card relative"
+      className="bg-white rounded-2xl p-8 shadow-sm skill-card relative flex flex-col justify-between"
       data-testid={`card-project-${index}`}
     >
-      {project.badge && (
-        <div
-          className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
-          style={{ backgroundColor: "hsl(220, 60%, 95%)", color: "hsl(220, 75%, 22%)" }}
-        >
-          <Users className="h-3 w-3" />
-          {project.badge}
+      <div>
+        {project.badge && (
+          <div
+            className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
+            style={{ backgroundColor: "hsl(220, 60%, 95%)", color: "hsl(220, 75%, 22%)" }}
+          >
+            <Users className="h-3 w-3" />
+            {project.badge}
+          </div>
+        )}
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div className="p-3 rounded-xl" style={{ backgroundColor: "hsl(220, 60%, 95%)", color: "hsl(220, 75%, 22%)" }}>
+            <project.icon className="h-6 w-6" />
+          </div>
+          <div className="flex items-center gap-2">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                style={{ backgroundColor: "hsl(220, 75%, 22%)", color: "#ffffff" }}
+                title="Live Demo"
+                data-testid={`link-project-live-${index}`}
+              >
+                Live Demo
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg transition-colors hover:bg-[hsl(220,30%,92%)]"
+              title="GitHub Repository"
+              data-testid={`link-project-github-${index}`}
+            >
+              <Github className="h-5 w-5" style={{ color: "hsl(220, 40%, 30%)" }} />
+            </a>
+          </div>
         </div>
-      )}
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div className="p-3 rounded-xl" style={{ backgroundColor: "hsl(220, 60%, 95%)", color: "hsl(220, 75%, 22%)" }}>
-          <project.icon className="h-6 w-6" />
-        </div>
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-lg transition-colors hover:bg-[hsl(220,30%,92%)]"
-          data-testid={`link-project-github-${index}`}
-        >
-          <Github className="h-5 w-5" style={{ color: "hsl(220, 40%, 30%)" }} />
-        </a>
+        <h3 className="text-xl font-bold mb-2" style={{ color: "hsl(220, 60%, 17%)" }} data-testid={`text-project-title-${index}`}>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline flex items-center gap-1.5"
+            >
+              {project.title}
+              <ExternalLink className="h-4 w-4 opacity-70" />
+            </a>
+          ) : (
+            project.title
+          )}
+        </h3>
+        <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: "hsl(220, 20%, 46%)" }}>
+          {project.description}
+        </p>
       </div>
-      <h3 className="text-xl font-bold mb-2" style={{ color: "hsl(220, 60%, 17%)" }} data-testid={`text-project-title-${index}`}>
-        {project.title}
-      </h3>
-      <p className="text-sm md:text-base leading-relaxed mb-4" style={{ color: "hsl(220, 20%, 46%)" }}>
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2">
+
+      <div className="flex flex-wrap gap-2 pt-2">
         {project.tech.map((tech, techIndex) => (
           <span
             key={techIndex}
@@ -115,3 +180,4 @@ export default function ProjectsSection() {
     </section>
   );
 }
+

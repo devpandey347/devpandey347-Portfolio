@@ -27,10 +27,12 @@ const certifications: Certification[] = [
             "https://www.linkedin.com/learning/certificates/fa83eba9f40611dc8e423b5a49a459bca30a6a5f6cf592eae3f0041b829282f8?trk=share_certificate",
     },
     {
-        title: "Hack Node India 2025 Hackathon",
-        issuer: "BlockseBlock and OpenxAI",
+        title: "Vibe2Ship",
+        issuer: "Vibe2Ship",
         date: "2025",
-        image: "certifications/HackathonCertificate.jpg",
+        image: "certifications/Vibe2Ship.png",
+        credentialUrl:
+            "https://devpandey347.github.io/Vibe2Ship-The-Last-Minute-Life-Saver/",
     },
 ];
 

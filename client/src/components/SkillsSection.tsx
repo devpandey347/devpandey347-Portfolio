@@ -10,11 +10,32 @@ import {
   SiNumpy,
   SiJupyter,
   SiC,
+  SiCplusplus,
+  SiPandas,
   SiPostgresql,
 } from "react-icons/si";
 import { FaApple, FaWindows } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
+function MatplotlibIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 3v18h18v-2H5V3H3zm4 12l3.5-5 3.5 3.5 5-7v2.5l-5 7-3.5-3.5L8.5 15H7z" />
+      <circle cx="10.5" cy="10" r="1.5" />
+      <circle cx="14" cy="13.5" r="1.5" />
+      <circle cx="19" cy="6.5" r="1.5" />
+    </svg>
+  );
+}
+
+function SeabornIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z" opacity="0.85" />
+    </svg>
+  );
+}
 
 const skillCategories = [
   {
@@ -26,13 +47,17 @@ const skillCategories = [
       { icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" },
       { icon: SiPython, color: "#3776AB", name: "Python" },
       { icon: SiC, color: "#A8B9CC", name: "C" },
+      { icon: SiCplusplus, color: "#00599C", name: "C++" },
       { icon: SiNumpy, color: "#013243", name: "NumPy" },
+      { icon: SiPandas, color: "#150458", name: "Pandas" },
+      { icon: MatplotlibIcon, color: "#11557C", name: "Matplotlib" },
+      { icon: SeabornIcon, color: "#37827D", name: "Seaborn" },
       { icon: SiPostgresql, color: "#4169E1", name: "PostgreSQL" },
     ],
     bullets: [
       "Building responsive websites with HTML, CSS & JavaScript",
-      "Writing automation scripts and data programs with Python & C",
-      "Numerical computing  with NumPy",
+      "Writing algorithms, data programs & automation scripts with C, C++ & Python",
+      "Data manipulation & visualization with NumPy, Pandas, Matplotlib & Seaborn",
       "Database management and querying with PostgreSQL",
     ],
     animDir: "left" as const,
@@ -45,12 +70,12 @@ const skillCategories = [
       { icon: SiGithub, color: "#181717", name: "GitHub" },
       { icon: SiReplit, color: "#F26207", name: "Replit" },
       { icon: VscCode, color: "#007ACC", name: "VS Code" },
-      { icon: SiJupyter, color: "#F37626", name: "Jupyter" }
+      { icon: SiJupyter, color: "#F37626", name: "Jupyter" },
     ],
     bullets: [
       "Version control with Git and GitHub for collaboration",
       "Rapid prototyping on Replit and coding in VS Code",
-      "Data science workflows in Jupyter Notebook on Google Cloud",
+      "Data science workflows in Jupyter Notebook & Google Colab",
     ],
     animDir: "right" as const,
   },
@@ -134,3 +159,4 @@ export default function SkillsSection() {
     </section>
   );
 }
+

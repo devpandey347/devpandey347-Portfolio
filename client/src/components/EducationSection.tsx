@@ -3,19 +3,19 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const education = [
   {
-    degree: "Bachelor of Technology in Computer Science Engineering",
+    degree: "B.Tech in Computer Science Engineering (Specialization in AI & Machine Learning)",
     institution: "Lovely Professional University",
-    period: "Currently Pursuing",
+    period: "2025 – Current",
     description:
-      "Focusing on software development, data structures, algorithms, and building practical applications with Python and JavaScript.",
+      "Specializing in Artificial Intelligence and Machine Learning with a 7.86 CGPA. Focusing on software development, data structures, algorithms, and practical AI/ML applications.",
     animDir: "left" as const,
   },
   {
-    degree: "Senior Secondary (12th)",
+    degree: "Senior Secondary School (PCM)",
     institution: "RMS Academy",
-    period: "2025",
+    period: "2024 – 2025",
     description:
-      "Completed senior secondary education with 70% marks. Built a strong foundation in science and mathematics.",
+      "Completed senior secondary education (PCM) with 70% overall marks. Built a strong foundation in physics, chemistry, and mathematics.",
     animDir: "right" as const,
   },
 ];
