@@ -82,13 +82,24 @@
 
   html {
     scroll-behavior: smooth;
-    /* Exact background color matching the reference site */
     background-color: #dde6f5;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
   }
 
   body {
     @apply font-sans antialiased text-foreground;
     background-color: #dde6f5;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+
+  #root {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
   }
 }
 
@@ -191,9 +202,10 @@
   color: hsl(var(--foreground));
 }
 
-/* Shared layout width to reduce large empty side gutters on wide screens */
+/* Shared layout width to ensure clean responsive alignment without overflow */
 .content-wrap {
-  width: min(94vw, 1500px);
+  width: 100%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }
