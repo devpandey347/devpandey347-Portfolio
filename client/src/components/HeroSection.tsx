@@ -1,4 +1,4 @@
-import { Github, Linkedin, Star } from "lucide-react";
+import { Github, Linkedin, Star, FileText } from "lucide-react";
 import { SiX, SiInstagram, SiGeeksforgeeks, SiReddit } from "react-icons/si";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -65,16 +65,28 @@ export default function HeroSection() {
                 </a>
               ))}
             </div>
-            <a
-              href="https://github.com/devpandey347"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="star-button mt-1"
-              data-testid="button-star-github"
-            >
-              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-              Star Me On Github
-            </a>
+            <div className="flex flex-wrap items-center gap-3 mt-1">
+              <a
+                href="https://github.com/devpandey347"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="star-button"
+                data-testid="button-star-github"
+              >
+                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                Star Me On Github
+              </a>
+              <a
+                href="https://drive.google.com/file/d/1aRygoI4lX6EalJc1vexDySiqUMcxwUXK/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cv-button"
+                data-testid="button-download-cv"
+              >
+                <FileText className="h-5 w-5" />
+                Download CV
+              </a>
+            </div>
           </div>
 
           {/* RIGHT — Profile image — slides from right */}
