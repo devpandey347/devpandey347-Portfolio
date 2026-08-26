@@ -223,6 +223,20 @@
   box-shadow: 0 4px 15px rgba(0, 28, 85, 0.3);
 }
 
+/* CV download button */
+.cv-button {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300;
+  background: white;
+  color: hsl(220, 75%, 22%);
+  border: 2px solid hsl(220, 75%, 22%);
+}
+
+.cv-button:hover {
+  background: hsl(220, 60%, 95%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 28, 85, 0.15);
+}
+
 /* Lightning bullet */
 .lightning-bullet::before {
   content: "⚡ ";

@@ -14,7 +14,7 @@ const socialLinks = [
 export default function HeroSection() {
   const textAnim = useScrollAnimation<HTMLDivElement>({ direction: "left", threshold: 0.1 });
   const imageAnim = useScrollAnimation<HTMLDivElement>({ direction: "right", threshold: 0.1 });
-  const profileImage = `${import.meta.env.BASE_URL}certifications/Profile_Image.jpg`;
+  const profileImage = `${import.meta.env.BASE_URL}certifications/Profile_Image.jpeg`;
 
   return (
     <section
